@@ -207,8 +207,8 @@ int main()
 		printf( "start at %lld\n", start_time);
 	}
 
-	// error = tobii_head_pose_subscribe(device, head_pose_callback, 0);
-	// assert(error == TOBII_ERROR_NO_ERROR);
+	error = tobii_head_pose_subscribe(device, head_pose_callback, 0);
+	assert(error == TOBII_ERROR_NO_ERROR);
 
 	error = tobii_gaze_origin_subscribe(device, eye_position_callback, 0);
 	assert(error == TOBII_ERROR_NO_ERROR);
@@ -225,6 +225,12 @@ int main()
 	}
 		
 	error = tobii_gaze_point_unsubscribe(device);
+	assert(error == TOBII_ERROR_NO_ERROR);
+
+	error = tobii_gaze_origin_unsubscribe(device);
+	assert(error == TOBII_ERROR_NO_ERROR);
+
+	error = tobii_head_pose_unsubscribe(device);
 	assert(error == TOBII_ERROR_NO_ERROR);
 
 	error = tobii_device_destroy(device);
